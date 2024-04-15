@@ -131,7 +131,7 @@
 #endif
 #ifndef BSP_TZ_CFG_PSARE
 #define BSP_TZ_CFG_PSARE (\
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 1) /* WDT */ | \
+            (((1 > 0) ? 0U : 1U) << 1) /* WDT */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 2) /* IWDT */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 3) /* RTC */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 8) /* ULPT1 */ | \

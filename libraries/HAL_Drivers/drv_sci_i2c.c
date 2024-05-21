@@ -56,7 +56,7 @@ static struct ra_sci_i2c_handle ra_sci_i2cs[] =
     {.bus_name = "sci2c2", .i2c_cfg = &g_sci_i2c2_cfg, .i2c_ctrl = &g_sci_i2c2_ctrl,},
 #endif
 #ifdef BSP_USING_SCI_I2C3
-    {.bus_name = "sci2c3", .i2c_cfg = &g_sci_i2c3_cfg, .i2c_ctrl = &g_sci_i2c3_ctrl,},
+    {.bus_name = "sci2c3", .i2c_cfg = &g_sci3_cfg, .i2c_ctrl = &g_sci3_ctrl,},
 #endif
 #ifdef BSP_USING_SCI_I2C4
     {.bus_name = "sci2c4", .i2c_cfg = &g_sci_i2c4_cfg, .i2c_ctrl = &g_sci_i2c4_ctrl,},

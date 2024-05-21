@@ -6,13 +6,15 @@
         #endif
                 /* Number of interrupts allocated */
         #ifndef VECTOR_DATA_IRQ_COUNT
-        #define VECTOR_DATA_IRQ_COUNT    (4)
+        #define VECTOR_DATA_IRQ_COUNT    (6)
         #endif
         /* ISR prototypes */
         void sci_b_uart_rxi_isr(void);
         void sci_b_uart_txi_isr(void);
         void sci_b_uart_tei_isr(void);
         void sci_b_uart_eri_isr(void);
+        void sci_b_i2c_txi_isr(void);
+        void sci_b_i2c_tei_isr(void);
 
         #if __has_include("r_ioport.h")
         /* Vector table allocations */
@@ -24,6 +26,10 @@
         #define SCI9_TEI_IRQn          ((IRQn_Type) 2) /* SCI9 TEI (Transmit end) */
         #define VECTOR_NUMBER_SCI9_ERI ((IRQn_Type) 3) /* SCI9 ERI (Receive error) */
         #define SCI9_ERI_IRQn          ((IRQn_Type) 3) /* SCI9 ERI (Receive error) */
+        #define VECTOR_NUMBER_SCI3_TXI ((IRQn_Type) 4) /* SCI3 TXI (Transmit data empty) */
+        #define SCI3_TXI_IRQn          ((IRQn_Type) 4) /* SCI3 TXI (Transmit data empty) */
+        #define VECTOR_NUMBER_SCI3_TEI ((IRQn_Type) 5) /* SCI3 TEI (Transmit end) */
+        #define SCI3_TEI_IRQn          ((IRQn_Type) 5) /* SCI3 TEI (Transmit end) */
         #endif
 
         #ifdef __cplusplus

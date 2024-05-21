@@ -146,6 +146,8 @@
             <slot name="IRQ1" secure="true"/>
             <slot name="IRQ2" secure="true"/>
             <slot name="IRQ3" secure="true"/>
+            <slot name="IRQ4" secure="true"/>
+            <slot name="IRQ5" secure="true"/>
         </peripheral>
     </partition>
 </azone>

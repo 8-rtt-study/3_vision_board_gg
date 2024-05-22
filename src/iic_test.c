@@ -112,14 +112,13 @@ static void aht10_init(const char *name)
 
         read_regs(i2c_bus,1,temp);
 
-        if(temp == 0x10)
+        if(temp[0] == 0xFF)
         {
-            rt_kprintf("[baro][who am i][ok]\r\n");
-            initialized = RT_TRUE;
+            rt_kprintf("[QCM5883L][who am i][ok]\r\n");            
         }
         else
         {
-            rt_kprintf("[baro][who am i][fail]\r\n");
+            rt_kprintf("[QCM5883L][who am i][fail]\r\n");
         }
     }
 }
@@ -146,25 +145,26 @@ static void i2c_aht10_sample(int argc, char *argv[])
         /* 传感器初始化 */
         aht10_init(name);
     }
-    if (initialized)
-    {
-        /* 读取温湿度数据 */
-        read_temp_humi(&temperature, &humidity);
 
-        rt_kprintf("read aht10 sensor humidity   : %d.%d %%\n", (int)humidity, (int)(humidity * 10) % 10);
-        if( temperature >= 0 )
-        {
-            rt_kprintf("read aht10 sensor temperature: %d.%d°C\n", (int)temperature, (int)(temperature * 10) % 10);
-        }
-        else
-        {
-            rt_kprintf("read aht10 sensor temperature: %d.%d°C\n", (int)temperature, (int)(-temperature * 10) % 10);
-        }
-    }
-    else
-    {
-        rt_kprintf("initialize sensor failed!\n");
-    }
+    // if (initialized)
+    // {
+    //     /* 读取温湿度数据 */
+    //     read_temp_humi(&temperature, &humidity);
+
+    //     rt_kprintf("read aht10 sensor humidity   : %d.%d %%\n", (int)humidity, (int)(humidity * 10) % 10);
+    //     if( temperature >= 0 )
+    //     {
+    //         rt_kprintf("read aht10 sensor temperature: %d.%d°C\n", (int)temperature, (int)(temperature * 10) % 10);
+    //     }
+    //     else
+    //     {
+    //         rt_kprintf("read aht10 sensor temperature: %d.%d°C\n", (int)temperature, (int)(-temperature * 10) % 10);
+    //     }
+    // }
+    // else
+    // {
+    //     rt_kprintf("initialize sensor failed!\n");
+    // }
 }
 /* 导出到 msh 命令列表中 */
 MSH_CMD_EXPORT(i2c_aht10_sample, i2c aht10 sample);

@@ -303,8 +303,8 @@
 #define BSP_USING_SCI3_I2C
 #define BSP_USING_SDRAM
 #define BSP_USING_SDRAM_SIZE 0x2000000
-#define BSP_USING_SCI_I2C
-#define BSP_USING_SCI_I2C3
+// #define BSP_USING_SCI_I2C
+// #define BSP_USING_SCI_I2C3
 /* end of On-chip Peripheral Drivers */
 /* end of Hardware Drivers Config */
 

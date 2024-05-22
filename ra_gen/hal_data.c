@@ -12,7 +12,7 @@ const sci_b_i2c_extended_cfg_t g_sci3_cfg_extend =
 const i2c_master_cfg_t g_sci3_cfg =
 {
     .channel             = 3,
-    .rate                = I2C_MASTER_RATE_STANDARD,
+    .rate                = I2C_MASTER_RATE_FAST,
     .slave               = 0x00,
     .addr_mode           = I2C_MASTER_ADDR_MODE_7BIT,
 #define RA_NOT_DEFINED (1)

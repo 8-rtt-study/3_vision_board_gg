@@ -9,11 +9,14 @@
 #include <rtthread.h>
 #include <rtdevice.h>
 
-#define AHT10_I2C_BUS_NAME          "sci2c3"  /* 传感器连接的I2C总线设备名称 */
-#define AHT10_ADDR                  0x38    /* 从机地址 */
+#define AHT10_I2C_BUS_NAME          "sci3i"  /* 传感器连接的I2C总线设备名称 */
+#define AHT10_ADDR                  0x0D    /* 从机地址 */
 #define AHT10_CALIBRATION_CMD       0xE1    /* 校准命令 */
 #define AHT10_NORMAL_CMD            0xA8    /* 一般命令 */
 #define AHT10_GET_DATA              0xAC    /* 获取数据命令 */
+
+#define QCM5883L_ID_ADDR            0x0D
+#define IST8310_ID_ADDR             0x0E
 
 static struct rt_i2c_bus_device *i2c_bus = RT_NULL;     /* I2C总线设备句柄 */
 static rt_bool_t initialized = RT_FALSE;                /* 传感器初始化状态 */
@@ -86,7 +89,7 @@ static void read_temp_humi(float *cur_temp, float *cur_humi)
 
 static void aht10_init(const char *name)
 {
-    rt_uint8_t temp[2] = {0, 0};
+    rt_uint8_t temp[10] = {0};
 
     /* 查找I2C总线设备，获取I2C总线设备句柄 */
     i2c_bus = (struct rt_i2c_bus_device *)rt_device_find(name);
@@ -97,14 +100,27 @@ static void aht10_init(const char *name)
     }
     else
     {
-        write_reg(i2c_bus, AHT10_NORMAL_CMD, temp);
-        rt_thread_mdelay(400);
+        // write_reg(i2c_bus, AHT10_NORMAL_CMD, temp);
+        // rt_thread_mdelay(400);
 
-        temp[0] = 0x08;
-        temp[1] = 0x00;
-        write_reg(i2c_bus, AHT10_CALIBRATION_CMD, temp);
-        rt_thread_mdelay(400);
-        initialized = RT_TRUE;
+        // temp[0] = 0x08;
+        // temp[1] = 0x00;
+        // write_reg(i2c_bus, AHT10_CALIBRATION_CMD, temp);
+        // rt_thread_mdelay(400);
+
+        write_reg(i2c_bus, 0x0D, RT_NULL);
+
+        read_regs(i2c_bus,1,temp);
+
+        if(temp == 0x10)
+        {
+            rt_kprintf("[baro][who am i][ok]\r\n");
+            initialized = RT_TRUE;
+        }
+        else
+        {
+            rt_kprintf("[baro][who am i][fail]\r\n");
+        }
     }
 }
 

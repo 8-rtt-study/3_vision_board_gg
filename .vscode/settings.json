@@ -4,6 +4,13 @@
         "rtdevice.h": "c",
         "board.h": "c",
         "stdlib.h": "c",
-        "rtthread.h": "c"
+        "rtthread.h": "c",
+        "locale": "c",
+        "thread": "c",
+        "xlocale": "c",
+        "xlocmes": "c",
+        "xlocmon": "c",
+        "xlocnum": "c",
+        "xloctime": "c"
     }
 }
